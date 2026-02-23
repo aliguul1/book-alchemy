@@ -113,4 +113,4 @@ if __name__ == '__main__':
         if not os.path.exists(os.path.join(basedir, 'data')):
             os.makedirs(os.path.join(basedir, 'data'))
         db.create_all()
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5002, debug=True)
