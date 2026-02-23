@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Author</title>
+</head>
+<body>
+    <h1>✍️ Add a New Author</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}{% for msg in messages %}<p style="color: green;">{{ msg }}</p>{% endfor %}{% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('add_author') }}" method="POST">
+        <label>Name:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Birth Date:</label><br>
+        <input type="text" name="birthdate" required><br><br>
+
+        <label>Date of Death:</label><br>
+        <input type="text" name="date_of_death"><br><br>
+
+        <button type="submit">Save Author</button>
+    </form>
+    <a href="{{ url_for('home') }}">Back to Library</a>
+</body>
+</html>

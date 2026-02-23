@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Library</title>
+</head>
+<body>
+    <h1>📚 Digital Library</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}{% for msg in messages %}<p><b>{{ msg }}</b></p>{% endfor %}{% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('home') }}" method="GET">
+        <input type="text" name="search" placeholder="Search titles..." value="{{ search_query or '' }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <p>Sort by:
+        <a href="{{ url_for('home', sort='title', search=search_query) }}">Title</a> |
+        <a href="{{ url_for('home', sort='author', search=search_query) }}">Author</a>
+    </p>
+
+    <hr>
+
+    <div class="book-list">
+        {% for book in books %}
+            <div style="border: 1px solid #ccc; padding: 10px; margin: 10px; width: 300px; display: inline-block; vertical-align: top;">
+                <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-M.jpg" alt="Cover" style="height: 150px;">
+
+                <h3><a href="{{ url_for('book_detail', book_id=book.id) }}">{{ book.title }}</a></h3>
+
+                <p>By: <a href="{{ url_for('author_detail', author_id=book.author.id) }}">{{ book.author.name }}</a></p>
+
+                <p>Rating: {{ book.rating or 'No rating' }}/10</p>
+
+                <form action="{{ url_for('delete_book', book_id=book.id) }}" method="POST">
+                    <button type="submit">Delete Book</button>
+                </form>
+            </div>
+        {% else %}
+            <p>No books found. <a href="{{ url_for('add_book') }}">Add one here.</a></p>
+        {% endfor %}
+    </div>
+
+    <hr>
+    <a href="{{ url_for('add_author') }}">Add Author</a> |
+    <a href="{{ url_for('add_book') }}">Add Book</a> |
+    <a href="{{ url_for('recommend_book') }}">Suggest Book</a>
+</body>
+</html>
