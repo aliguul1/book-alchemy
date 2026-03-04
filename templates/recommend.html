@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommendation</title>
+</head>
+<body>
+    <header>
+        <h1>📚 AI Recommendation</h1>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a> |
+            <a href="{{ url_for('add_author') }}">Add Author</a> |
+            <a href="{{ url_for('add_book') }}">Add Book</a>
+        </nav>
+    </header>
+    <hr>
+
+    <main>
+        <h3>Our Suggestion for You:</h3>
+        <p><strong>{{ recommendation }}</strong></p>
+        <br>
+        <a href="{{ url_for('home') }}">Back to Library</a>
+    </main>
+</body>
+</html>

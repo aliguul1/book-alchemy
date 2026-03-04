@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ book.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+    </nav>
+
+    <div style="display: flex; gap: 40px; margin-top: 20px;">
+        <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="Cover" style="border-radius: 8px;">
+        <div>
+            <h1>{{ book.title }}</h1>
+            <p><strong>Author:</strong> {{ book.author.name }}</p>
+            <p><strong>ISBN:</strong> {{ book.isbn }}</p>
+            <p><strong>Published:</strong> {{ book.publication_year }}</p>
+            <p><strong>Rating:</strong> {{ book.rating }}/10</p>
+        </div>
+    </div>
+</body>
+</html>

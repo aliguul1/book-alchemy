@@ -1,27 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Add Author</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>✍️ Add a New Author</h1>
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('add_book') }}">Add Book</a>
+    </nav>
 
+    <h1>Add a New Author</h1>
     {% with messages = get_flashed_messages() %}
-      {% if messages %}{% for msg in messages %}<p style="color: green;">{{ msg }}</p>{% endfor %}{% endif %}
+      {% if messages %}
+        <div class="flash-messages">{{ messages[0] }}</div>
+      {% endif %}
     {% endwith %}
 
-    <form action="{{ url_for('add_author') }}" method="POST">
-        <label>Name:</label><br>
-        <input type="text" name="name" required><br><br>
+    <form method="POST">
+        <label>Author Name:</label>
+        <input type="text" name="name" required>
 
-        <label>Birth Date:</label><br>
-        <input type="text" name="birthdate" required><br><br>
+        <label>Birth Date:</label>
+        <input type="date" name="birthdate" required>
 
-        <label>Date of Death:</label><br>
-        <input type="text" name="date_of_death"><br><br>
+        <label>Date of Death (Optional):</label>
+        <input type="date" name="date_of_death">
 
-        <button type="submit">Save Author</button>
+        <button type="submit">Add Author</button>
     </form>
-    <a href="{{ url_for('home') }}">Back to Library</a>
 </body>
 </html>
