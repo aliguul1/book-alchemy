@@ -2,7 +2,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-
 class Author(db.Model):
     """Model representing a book author."""
 
@@ -23,7 +22,6 @@ class Author(db.Model):
 
     def __str__(self):
         return f"Author(name={self.name})"
-
 
 class Book(db.Model):
     """Model representing a book in the library."""
